@@ -1,0 +1,42 @@
+<%if current_user%>
+<h1>Crear Vicaria</h1>
+
+<% form_for(@vicariou) do |f| %>
+  <%= f.error_messages %>
+
+
+<table>
+<tr><td><%= f.label :name_vicariou, "*&nbsp;Nombre de Vicaria" %></td><td><%= f.text_field :name_vicariou %></td></tr>
+<tr><td><%= f.label :ubication, "*&nbsp;Ubicación" %></td><td><%= f.text_field :ubication %></td></tr>
+<tr><td>&nbsp;&nbsp;Transporte</td><td><%= f.text_field :transport %></td></tr>
+<tr><td><%= f.label :telephone, "*&nbsp;Teléfono" %></td><td><%= f.text_field :telephone %></td></tr>
+<tr><td>*&nbsp;Nombre del Vicario</td><td>
+    <select name="vicariou[pastor_id]" style="width: 195px">      
+    <% if @pastor
+    @pastor.each do |pastor| %>
+    <option value="<%=pastor.id%>">
+               <%=pastor.name+" "+pastor.primary_last_name+" "+pastor.second_last_name%>
+    </option>
+    <%end%>
+<%end%>
+</select>
+    
+    
+  </td></tr>
+<tr>
+      <td>*  Estos campos son obligatorios</td>
+</tr>
+<tr align="right">
+  <td colspan="2">
+    
+    <%= f.submit 'Registrar' %><button type="reset">Limpiar</button><%= link_to 'Cancelar', vicarious_path %>
+  </td>
+  </tr>
+</table>
+
+<% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+
+

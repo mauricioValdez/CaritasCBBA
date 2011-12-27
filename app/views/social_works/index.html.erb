@@ -1,0 +1,48 @@
+<h1>Obra Social</h1>
+
+<p>
+  <% form_tag social_works_path, :method => 'get' do %>
+    Parámetro <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</p>
+
+<table>
+  <tr>
+    <td align="RIGHT">
+      <% if current_user %>
+        <%= button_to 'Crear Obra Social', new_social_work_path %>
+      <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <table border ="3">
+        <tr id="head-table">
+          <th>Nombre</th>
+          <th>Responsable</th>
+          <th>Ubicación</th>
+          <th>Teléfono</th>
+          <th>Celular</th>
+          <th colspan="6">Acciones</th>
+        </tr>
+        <% @social_works.each do |social_work| %>
+          <tr>
+            <td><%=link_to (h social_work.name), social_work %></td>
+            <td><p class="word_wrap"><%=h social_work.responsible %></p></td>
+            <td><p class="word_wrap"><%=h social_work.location %></p></td>
+            <td><%=h social_work.phone %></td>
+            <td><%=h social_work.movil %></td>
+            <% if current_user %>
+              <td><%= link_to 'Editar', edit_social_work_path(social_work) %></td>
+              <td><%= link_to 'Fotos', :controller => "social_works", :action=>"add_photos", :id => social_work %></td>
+              <td><%= link_to 'Eliminar', social_work, :confirm => '¿Está seguro que desea eliminar la Obra Social?', :method => :delete %></td>
+            <%end%>
+          </tr>
+        <% end %>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+<br />

@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id_course_type: 1
+  id_workshop: 1
+
+two:
+  id_course_type: 1
+  id_workshop: 1

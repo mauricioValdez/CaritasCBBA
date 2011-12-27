@@ -1,0 +1,51 @@
+
+<h1>Ver Noticia</h1>
+
+<% form_for(@notice) do |f| %>
+  <table>
+    <tr>  
+      <td>* <%= "Título" %></td>
+      <td><%=h @notice.title%></td>
+    </tr>
+    
+    <tr>  
+      <td><%= "Imagen" %></td>
+      <% if @notice.notice_photo %>
+        <td align="center" ><%=  image_tag url_for_file_column("notice", "notice_photo"), :size=>"300x200" %></td>
+      <% else %>
+      <td align="center"><%=  image_tag "NoticeDefault.png", :size=>"300x200" %></td>
+      <% end   %>
+    </tr>
+    
+    <tr>
+      <td><%= "Descripción"  %> </td>
+      <td><%= f.text_area  :description, :size => "60x10", :disabled=>true, :style => "resize:none"%></td>
+    </tr>
+
+    <tr>
+      <td>* <%= "Tipo de Noticia" %> </td>
+      <td><%=h @notice.notice_type %></td>
+    </tr>
+
+    <tr>
+      <td><%= "Publicándose" %></td>
+      <td><%=f.check_box :is_published, :disabled => true %></td>
+    </tr>
+
+    <tr>
+      <td><%= "Última fecha" %> </td>
+      <td><%=h @notice.last_date%></td>
+    </tr>
+    
+    <tr align="right">
+      <td colspan="2">
+        <%if current_user%>
+          <%= link_to 'Editar', edit_notice_path(@notice) %> |
+        <%end%>
+        <%= link_to 'Volver', notices_path %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+
+

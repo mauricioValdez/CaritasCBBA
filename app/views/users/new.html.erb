@@ -1,0 +1,32 @@
+<%if current_user%>
+<h1>Nuevo Usuario</h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+    <tr>
+      <td>* Nombre de Usuario</td>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+      <td>* E-mail</td>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <td>* Contraseña</td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr>
+      <td>* Confirmacion de Contraseña</td>
+      <td><%= f.password_field :password_confirmation %></td>
+    </tr>
+    <tr align="right">
+      <td colspan="2"><%= f.submit 'Registrar' %> <%= link_to 'Volver', root_url %></td>
+    </tr>
+  </table>
+
+<% end %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

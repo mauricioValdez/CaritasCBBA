@@ -1,0 +1,18 @@
+<%if current_user%>
+
+<h1>New assistance_list</h1>
+
+<% form_for(@assistance_list) do |f| %>
+  <%= f.error_messages %>
+  
+  
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', assistance_lists_path %>  
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

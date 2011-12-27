@@ -1,0 +1,34 @@
+<%if current_user%>
+<h1>Donaciones</h1>
+
+<table>
+      <tr>
+        <td>
+          <%= button_to 'Crear Donacion', new_donation_path %>
+          </td>
+      </tr>
+
+  </tr>
+  <tr>
+    <th>Campaing</th>
+    <th>Name</th>
+    <th>Amount</th>
+    <th>Unit</th>
+  </tr>
+
+<% @donations.each do |donation| %>
+  <tr>
+    <td><%=h donation.campaing_id %></td>
+    <td><%=h donation.name %></td>
+    <td><%=h donation.amount %></td>
+    <td><%=h donation.unit %></td>
+    <td><%= link_to 'Ver', donation %></td>
+    <td><%= link_to 'Editar', edit_donation_path(donation) %></td>
+  </tr>
+<%end%>
+</table>
+
+<br />
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

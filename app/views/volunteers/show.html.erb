@@ -1,0 +1,100 @@
+<%if current_user%>
+<h1>Ver Voluntario</h1>
+
+<table>
+
+  <tr>
+    <td>
+      <b>Nombre</b> </td><td>
+      <%=h @volunteer.name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Apellido Paterno</b> </td><td>
+      <%=h @volunteer.last_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>Apellido Materno</b></td><td>
+      <%=h @volunteer.second_last_name %>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Profesión</b></td><td>
+      <%=h @volunteer.profession %>
+
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Teléfono</b></td><td>
+      <%=h @volunteer.phone_number %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>Celular</b></td><td>
+      <%=h @volunteer.movil %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>Fecha de Nacimiento</b></td><td>
+      <%=h @volunteer.date_of_birth %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>Género</b></td><td>
+      <%=h @volunteer.genre %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>Cargo</b></td><td>
+      <%=h @volunteer.position %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+
+      <b>E-mail</b></td><td>
+      <%=h @volunteer.email %>
+    </td>
+  </tr>
+  
+    <tr>
+    <td>
+
+      <b>Grupo</b></td><td>
+      <%=h Group.find(@volunteer.group_id).name unless @volunteer.group_id.blank? %>
+
+  </tr>
+<tr>  
+      <td><b><%= "Fotografía del Voluntario" %></b></td>
+      <% if @volunteer.volunteer_photo %>
+      <td><%=  image_tag url_for_file_column("volunteer", "volunteer_photo"), :size=>"300x200" %></td>
+      <% else %>
+      <td>No está disponible la fotografía</td>
+      <% end   %>
+    </tr>
+  
+  <tr align="right">
+    <td colspan="2">
+      <%= link_to 'Editar', edit_volunteer_path(@volunteer) %> |
+      <%= link_to 'Volver', volunteers_path %>
+    </td>
+  </tr>
+</table>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

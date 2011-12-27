@@ -1,0 +1,53 @@
+<%if current_user%>
+<CENTER><h1>Curso</h1></center>
+
+<TABLE ALIGN="CENTER">
+
+  <tr>
+    <td><b>Nombre</b></td>
+    <td><%=h @course.name %></td>
+  </tr>
+
+  <tr>
+  <td><b>Responsable</b></td>
+  <td><%=h @course.responsible %></td>
+  </tr>
+
+  <tr>  
+    <td><b>Fecha Inicial</b></td>
+    <td><%=h @course.date_ini %></td>
+  </tr>
+
+  <tr>
+    <td><b>Descripción</b></td>
+    <td><%=h @course.description %></td>
+  </tr>
+<tr align="right">
+    <td colspan="2">
+      <% if current_user %>
+            <%= link_to 'Editar', edit_course_path %>|
+          <% end %>
+      <%= link_to 'Volver', edit_workshop_path(@course.workshop_id) %>
+    </td>
+  </tr>
+
+</table>
+  <h1>Lista de Asistencia</h1>
+  
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+  </tr>
+  <% @volunteers.each do |volunteer| %>
+  <tr>  
+    <td><%=h volunteer.name %></td>
+    <td><%=h volunteer.last_name %></td>
+  </tr>
+  <% end %>
+ </table>
+
+
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

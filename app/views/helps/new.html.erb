@@ -1,0 +1,12 @@
+<h1>New help</h1>
+
+<% form_for(@help) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    
+    <%= f.submit 'Agregar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Atras', helps_path %>

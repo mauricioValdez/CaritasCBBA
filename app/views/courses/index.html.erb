@@ -1,0 +1,27 @@
+<%if current_user%>
+<h1>Historial de Cursos</h1>
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Responsable</th>
+    <th>Fecha Inicial</th>
+    <th colspan="2">Acciones</th>
+  </tr>
+
+<% @courses.each do |course| %>
+  <tr>
+    <td><%= link_to course.name, course%></td>
+    <td><%=h course.responsible %></td>
+    <td><%=h course.date_ini %></td>
+    
+    <td><%= link_to 'Editar', edit_course_path(course) %></td>
+    <td><%= link_to 'Eliminar', course, :confirm => '¿Está seguro que desea eliminar el curso?', :method => :delete %></td>    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

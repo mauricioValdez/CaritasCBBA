@@ -1,0 +1,176 @@
+<% form_for(@social_work) do |f| %>
+<CENTER><h1>Ver Obra Social</h1></center>
+<TABLE ALIGN="CENTER">
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Parroquia</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p>
+  <%=h @social_work.parish %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Nombre</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+  <%=h @social_work.name %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Obra Social de</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+  <%=h @social_work.social_work %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Responsable</b>
+  
+</p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+  <%=h @social_work.responsible %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Lugar</b>
+</p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+ 
+  <%=h @social_work.location %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Teléfono</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p>
+  <%=h @social_work.phone %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Celular</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p>
+  <%=h @social_work.movil %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>E-mail</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p>
+  <%=h @social_work.email %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Transporte</b>
+ </p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+  <%=h @social_work.transport %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Descripción</b>
+
+</p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+    <%= f.text_area  :description, :size => "60x20", :style=> "resize:none", :disabled => true %>
+</p>
+</TD>
+</TR>
+
+<TR>
+<TD WIDTH=100>
+  <p>
+  <b>Responsable del Llenado</b>
+  
+</p>
+</TD>
+
+<TD WIDTH=100>
+  <p class="word_wrap">
+  <%=h @social_work.responsible_filling %>
+</p>
+</TD>
+</TR>
+
+  <tr align="right">
+    <td colspan="2">
+      <% if current_user %>
+            <%= link_to 'Editar', edit_social_work_path %>|
+
+      <%= link_to 'Volver', social_works_path %>
+          <% else %>
+      <%=link_to "Volver", :controller => "social_works", :action => "index_public",:id =>'find'%>
+          <% end %>
+    </td>
+
+  </tr>
+</TABLE>
+<% end %>

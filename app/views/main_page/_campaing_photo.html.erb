@@ -1,0 +1,33 @@
+    <% @i = 1; %>
+
+        <% @p1 = Campaing.getRandomPicture(@campaing.id) %>
+
+     <% @p2 = Campaing.getRandomPicture(@campaing.id) %>
+     <% @p3 = Campaing.getRandomPicture(@campaing.id) %>
+        <% if @p1 != nil %>
+
+
+<div id="highlight">
+
+  <div id=photos>
+
+   <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p1.id%>/original/<%=@p1.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+        <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p1.id%>/original/<%=@p1.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+          <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p2.id%>/original/<%=@p2.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+
+        </div>
+
+
+  <script type="text/javascript">sweet.slider('highlight','navegation',6)</script>
+  <div id="navegation">
+    <p class="selected"> <a href="javascript:;"><span><%= 1 %></span>
+      </a></p>
+    <p> <a href="javascript:;"><span>2</span></a></p>
+    <p> <a href="javascript:;"><span>3</span></a></p>
+  </div>
+  <div class="navegationbg">&nbsp;</div>
+
+</div>
+    <% end%>
+
+

@@ -1,0 +1,95 @@
+<%if current_user%>
+<h1>Ver Taller</h1>
+<table>
+  <tr>
+    <td>
+      <b>Parroquia</b>
+    </td>
+    <% @parish.each do |parish| 
+      if parish.id == @workshop.parish_id
+      %>
+    
+        <td><%= link_to parish.parish_name,parish %></td>
+      <%end
+    end%>
+  </tr>
+  <tr>
+    <td>
+      <b>Párroco</b>
+    </td>
+
+
+    <td><%=h @pastor.name+" "+@pastor.primary_last_name+" "+@pastor.second_last_name  %></td>
+
+  </tr>
+  <tr>
+    <td>
+      <b>Estado de Parroquia</b>
+    </td>
+
+
+    <td><%=h @parish1.current_state%></td>
+
+  </tr>
+  <tr>
+    <td>
+      <b>Vicaria a la que Pertenece</b>
+    </td> 
+    <td><%=h  @vicariou.name_vicariou%></td>   
+  </tr>
+  <tr>
+    <td>
+      <b>Observaciones</b> 
+    </td>
+    <td>
+      <%=h @workshop.observations %>
+    </td>
+  </tr>
+    <tr>
+    <td colspan="2" align="CENTER">
+  <% if @rel.count!=0 %>
+      
+      <h1>Cursos Realizados</h1>
+<table border="3" align="CENTER">
+
+        <tr id ='head-table'>
+          <th>Curso de Formación</th>
+          <th>Cantidad</th>
+        </tr>
+
+     
+
+
+      
+       <%   @rel.each do |r| %>
+        <tr>
+          
+          
+      <% @cour= CoursesType.findf(r.id_course_type)[0] %>
+          <td align="CENTER">
+     <%= link_to r.to_s, :controller => "courses", :course_type=>r.id_course_type, :workshop=>@workshop.id %>
+            </td>
+            
+          <td align="CENTER">
+    
+    <%=  Course.findf(r.id_course_type,@workshop.id).count%>
+                    </td>
+            
+      </tr>
+    <%  end %>
+     </table> 
+    <%  else  %>
+      <h1>No tiene Cursos!!! </h1>
+    <%  end %>
+   </td>
+  </tr>   
+  <tr align="right">
+    <td colspan="2">
+      <%= link_to 'Editar', edit_workshop_path(@workshop) %> |
+      <%= link_to 'Atras', parishes_path %>      
+    </td>
+  </tr>
+</table>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,20 @@
+<h1>Editing workshop_course_type</h1>
+
+<% form_for(@workshop_course_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :id_course_type %><br />
+    <%= f.text_field :id_course_type %>
+  </p>
+  <p>
+    <%= f.label :id_workshop %><br />
+    <%= f.text_field :id_workshop %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @workshop_course_type %> |
+<%= link_to 'Back', workshop_course_types_path %>

@@ -1,0 +1,36 @@
+<%if current_user%>
+<h1>Editar Donacion</h1>
+
+<% form_for(@donation) do |f| %>
+  <%= f.error_messages %>
+  <table>
+
+    <tr>
+      <td>* Nombre</td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <table>
+
+    <tr>
+      <td>* Cantidad</td>
+      <td><%= f.text_field :amount %></td>
+      <td>* Unit</td>
+      <td><%= f.text_field :unit %></td>
+    </tr>
+    <tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Guardar' %>
+        <%= link_to 'Ver', :action => :show %>
+        <%= link_to 'Cancelar', campaings_path %>
+      </td>
+    </tr>
+    
+        <tr>
+      <td>*  Estos campos son obligatorios</td>
+    </tr>
+  </table>
+
+<% end %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

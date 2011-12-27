@@ -1,0 +1,19 @@
+<h1>Login</h1>
+
+<% form_for(@user_session) do |f| %>
+  <%= f.error_messages %>
+
+    <table>
+    <tr>
+      <td>* Nombre de Usuario</td>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+      <td>* Contraseña</td>
+      <td><%= f.password_field :password %></td>
+    </tr>
+    <tr align="right">
+      <td colspan="2"><%= f.submit 'Iniciar sesión' %> <%= link_to 'Volver', root_url %></td>
+    </tr>
+  </table>
+<% end %>

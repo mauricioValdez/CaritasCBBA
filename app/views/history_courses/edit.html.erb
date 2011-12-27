@@ -1,0 +1,43 @@
+<%if current_user%>
+<h1>Actualizar Historia de Curso</h1>
+
+<% form_for(@history_course) do |f| %>
+  <%= f.error_messages %>
+<table>
+    <tr><td>
+        Grupo:</td><td>
+<%= f.text_field :idGroup, :maxlength => 255, :size => 30 %></td></tr>
+    <tr><td>
+    Parroquia:</td><td>
+    <%= f.text_field :idParish, :maxlength => 255, :size => 30 %></td></tr>
+    <tr><td>
+    Instructor:</td><td>
+    <%= f.text_field :instructor, :maxlength => 255, :size => 30 %></td></tr>
+    <tr><td>
+    Fecha del Curso:</td><td>
+    <%= f.date_select :dateCourse %></td></tr>
+    <tr><td>
+    Curso:</td><td><select name="history_course[idCourse]" >
+            <option value=""></option>
+            <% if @courses 
+            @courses.each do |course| %>
+              <option value="<%=course.id%>" <%='selected' if course.id == @history_course.idCourse %> >
+                <%=course.name%>
+              </option>
+            <%end%>              
+              <%end%>   
+          </select></td></tr><tr>
+        <td colspan="2">*  Estos campos son obligatorios</td>
+      </tr>
+  
+</table>
+  <p>
+    <%= f.submit 'Actualizar' %>
+  </p>
+<% end %>
+
+<%= link_to 'Mostrar', @history_course %> |
+<%= link_to 'Atras', history_courses_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

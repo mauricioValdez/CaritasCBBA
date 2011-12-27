@@ -1,0 +1,124 @@
+<%if current_user%>
+<h2>Información de la Parroquia</h2>
+  <table width="50%" border="0">
+  <tr>
+    <td width="15"> Parroquia</td>
+    <td width="35%"> <%= h Parish.find(@social_card.parish_id).parish_name %></td>
+   </tr>
+  <tr>
+    <td width="15%">Fecha</td>
+    <td width="35%"> <%= h @social_card.date %></td>
+  </tr>
+</table>
+<br />
+ <h2>Información Personal</h2>
+<table border="0">
+  <tr>
+    <td width="15%"><p>Nombre</p></td>
+    <td width="35%"><%=h @social_card.name %></td>
+    <td width="15%">Estado Civil</td>
+    <td width="35%"><%= h @social_card.marital_status %></td>
+   </tr>
+  <tr>
+    <td>CI</td>
+    <td><%= h @social_card.identity_card %></td>
+    <td width="15%">Sexo</td>
+    <td width="35%"><%=h @social_card.gender %></td>
+  </tr>
+  <tr>
+    <td>Fecha de Nacimiento</td>
+    <td><%=h @social_card.birthday %></td>
+    <td >Lugar de Nacimiento</td>
+    <td ><%= h @social_card.birthday_location %></td>
+  </tr>
+  <tr>
+    <td >Domicilio</td>
+    <td ><%= h @social_card.address %></td>
+    <td>Referencia de Ubicación</td>
+    <td colspan="5"><%= h @social_card.location_reference %></td>
+  </tr>
+  <tr>
+    <td>Teléfono Fijo</td>
+    <td><%= h @social_card.phone %></td>
+    <td >Celular</td>
+    <td ><%= h @social_card.movil %></td>
+  </tr>
+  <tr>
+    <td>Grado Escolar</td>
+    <td><%= h @social_card.grade_school %></td>
+    <td >Ocupación</td>
+    <td ><%= h @social_card.occupation %></td>
+  </tr>
+  <tr>
+    <td>Total de Miembros en la Familia </td>
+    <td><%=h @social_card.family_members %></td>
+    <td >Parroquia a la que Pertenece</td>
+    <td ><%= h @social_card.parish_belongs %></td>
+  </tr>
+
+  <tr>
+    <td>Derivado Canalizado Por</td>
+    <td colspan="5"><%=h @social_card.derivative_by %></td>
+  </tr>
+  <tr>
+    <td>Historia Familiar</td>
+    <td colspan="5"><%= h @social_card.family_history %></td>
+  </tr>
+</table>
+  <h2>Información de Referencia</h2>
+  <table border="0">
+  <tr>
+    <td width="21%">Persona de Referencia</td>
+    <td><%=  h @social_card.reference_person %></td>
+    <td>Edad</td>
+    <td><%= h @social_card.age_reference %></td>
+  </tr>
+  <tr>
+    <td>Domicilio </td>
+    <td colspan="3"><%=  h @social_card.address_reference %></td>
+  </tr>
+  <tr>
+    <td>Teléfono</td>
+    <td width="29%"><%=  h @social_card.phone_reference %></td>
+    <td width="21%">Celular</td>
+    <td width="29%"><%=  h @social_card.movil_reference %></td>
+  </tr>
+  <tr>
+    <td>Ocupación</td>
+    <td colspan="3"><%= h @social_card.occupation_reference %></td>
+  </tr>
+</table>
+<br />
+  <h2>Otros Datos</h2>
+<table  border="0">
+  <tr>
+    <td width="21%">Caso </td>
+    <td><%= h @social_card.type_of_case %></td>
+  </tr>
+  
+  <tr>
+    <td><p>¿Ha recibido ayuda en otras Instituciones o Parroquias?<br />
+    </p></td>
+    <td><%= h @social_card.did_you_get_another_help%></td>
+  </tr>
+  <tr>
+    <td>¿De qué tipo?
+    </td>
+     <td><%= h @social_card.what_kind%></td>
+  </tr>
+  <tr>  
+      <td><%= "Fotografía de la Persona" %></td>
+      <% if @social_card.social_card_photo %>
+      <td><%=  image_tag url_for_file_column("social_card", "social_card_photo"), :size=>"300x200" %></td>
+      <% else %>
+      <td>No está disponible la fotografía</td>
+      <% end   %>
+    </tr>
+</table>
+  
+  
+<%= link_to 'Editar', edit_social_card_path(@social_card) %> |
+<%= link_to 'Volver', social_cards_path %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

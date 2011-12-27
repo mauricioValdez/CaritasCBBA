@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtm...ansitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @page_title || 'Caritas Parroquiales' %></title>
+    <%= stylesheet_link_tag "Caritas"  %>
+    <%= stylesheet_link_tag "jquery-ui-1.8.13.custom"  %>
+    <%= stylesheet_link_tag "ui.dropdownchecklist.themeroller"  %>
+    <%= stylesheet_link_tag "accordion"  %>
+    <%= stylesheet_link_tag "accordion_ie"  %>
+
+    <%= stylesheet_link_tag "highlight"  %>
+    <%= javascript_include_tag "highlight" %>
+<script type="text/javascript">
+<!--
+	var sweet = new highlight();
+-->
+</script>
+    <%= javascript_include_tag "slide" %>
+    <%= javascript_include_tag "jquery-1.6.1.min"  %>
+    <%= javascript_include_tag "jquery-ui-1.8.13.custom.min"  %>
+    <%= javascript_include_tag "ui.dropdownchecklist-1.4-min"  %>
+    <%= javascript_include_tag "carusel"  %>
+    <%= javascript_include_tag "jquery"  %>
+    <%= javascript_include_tag "jquery_002"  %>
+    <%= javascript_include_tag :defaults %>
+
+  </head>
+  <body>
+    <div id="wrap">
+      <%= render :partial => 'main_page/header' %>
+      <%= render :partial => 'main_page/horizontalMenu'%>
+      <div id="content-wrap">
+        <div id="content-layout">
+          <%= "<h1>#{@page_title}</h1>" if @page_title %>
+          <center>
+            <%= yield %>
+          </center>
+        </div>
+      </div>
+      <%= render :partial => 'main_page/footer' %>
+    </div>
+  </body>
+</html>

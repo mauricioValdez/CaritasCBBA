@@ -1,0 +1,46 @@
+
+<ul id=nav>
+   <% if current_user %>
+      <li><%= link_to 'Inicio',:controller => "main_page", :action => "index"%>
+        <ul>
+          <li><%= link_to 'Quiénes somos?',:controller => "main_page", :action => "quienesSomos"%></li>
+          <li><%= link_to 'Contáctanos',:controller => "emailer", :action => "contact_us"%></li>
+        </ul>
+      </li>
+      <li><a href="#">Grupos y Voluntarios</a>
+        <ul>
+          <li><%= link_to 'Párroco',:controller => "pastors", :action => "index"%></li>
+          <li><%= link_to 'Vicaria',:controller => "vicarious", :action => "index" %></li>
+          <li><%= link_to 'Parroquia',:controller => "parishes", :action => "index"%> </li>
+          <li><%= link_to 'Grupos',:controller => "groups", :action => "index"%></li>
+          <li><%= link_to 'Voluntario',:controller => "volunteers", :action => "index"%></li>
+          <li><%= link_to 'Cursos de Formación',:controller => "courses_types", :action => "index"%></li>
+        </ul></li>
+      <li><a href="#">Campañas y Proyectos</a>
+        <ul>
+          <li><%= link_to 'Campaña',:controller => "campaings", :action => "index"%></li>
+          <li><%= link_to 'Noticias',:controller => "notices", :action => "index"%></li>
+          <li><%= link_to 'Obra Social',:controller => "social_works", :action => "index"%></li>
+          <li><%= link_to 'Ficha Social',:controller => "social_cards", :action => "index"%></li>
+        </ul>
+        <% else %>
+            <li><%= link_to 'Inicio',:controller => "main_page", :action => "index"%>
+              <ul>
+                <li><%= link_to 'Quienes somos?',:controller => "main_page", :action => "quienesSomos"%></li>
+                <li><%= link_to 'Contactanos',:controller => "emailer", :action => "contact_us"%></li>
+              </ul>
+              <li><a href="#">Campañas</a>
+        <ul>
+          <li><%= link_to 'Campaña',:controller => "campaings", :action => "index_public", :id =>" " %></li>
+          <li><%= link_to 'Noticias',:controller => "notices", :action => "index_public", :id =>" "  %></li>
+          <li><%= link_to 'Obra Social',:controller => "social_works", :action => "index_public",:id =>" " %></li>
+
+
+         </ul>
+            </li>
+
+        <% end %>
+
+
+</li>
+</ul>

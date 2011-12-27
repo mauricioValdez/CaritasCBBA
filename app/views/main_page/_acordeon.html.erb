@@ -1,0 +1,45 @@
+            <div id="notice">
+
+		<!-- css3 accordion -->
+		<div class="accordion-container">
+			<!--accordion-->
+			<ul>
+              <% indice = 1 %>
+              <li class="block_header">Campañas</li>
+              <% Campaing.find_last_five.each do |campaing| %>
+                  <li class="block" id=block_<%= indice %>><a class="header" href=#block_<%= indice %>><%= campaing.name %></a><div class="arrow"></div>
+                  <div>
+                    <p class="word_wrap"><%= "#{truncate(campaing.description, :length => 250)}" %>   </p>
+                   <%= link_to "Seguir leyendo.", :controller => "campaings", :action => "show_public", :id =>campaing %>
+                    <% indice = indice+1 %>
+					</div>
+              <% end %>
+    			</ul>
+          <ul>
+              <li class="block_header">Noticias</li>
+               <% Notice.find_last_five.each do |notice| %>
+                  <li class="block" id=block_<%= indice %>><a class="header" href=#block_<%= indice %>><%= notice.title%></a><div class="arrow"></div>
+                  <div>
+                    <p class="word_wrap"><%= "#{truncate(notice.description, :length => 250)}" %>   </p>
+                    <%= link_to "Seguir leyendo.", :controller => "notices", :action => "show_public", :id =>notice %>
+
+                    <% indice = indice+1 %>
+					</div>
+              <% end %>
+            </ul>
+          <ul>
+            <li class="block_header">Obra Social</li>
+                <% SocialWork.find_last_five.each do |social_work| %>
+                  <li class="block" id=block_<%= indice %>><a class="header" href=#block_<%= indice %>><%= social_work.to_lable%></a><div class="arrow"></div>
+                  <div>
+                    <p class="word_wrap"><%= "#{truncate(social_work.description, :length => 250)}" %>   </p>
+
+                    <%= link_to "Seguir leyendo.", :controller => "social_works", :action => "show_public", :id =>social_work %>
+
+                    <% indice = indice+1 %>
+					</div>
+              <% end %>
+            </ul>
+		</div>
+
+                </div>

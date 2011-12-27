@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nameVicariou: MyString
+  ubication: MyString
+  transport: MyString
+  telephone: MyString
+  vicarName: MyString
+
+two:
+  nameVicariou: MyString
+  ubication: MyString
+  transport: MyString
+  telephone: MyString
+  vicarName: MyString

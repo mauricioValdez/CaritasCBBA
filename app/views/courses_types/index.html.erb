@@ -1,0 +1,53 @@
+<%if current_user%>
+<h1>Cursos de Formación</h1>
+
+<p>
+  <% form_tag courses_types_path, :method => 'get' do %>
+    Nombre <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</p>
+
+<table>
+  <tr align="right">
+    <td>
+      <%=button_to 'Crear Curso de Formación', new_courses_type_url %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+
+      <table border="3">
+        <tr id = 'head-table'>
+          <th>Nombre</th>
+          <th width="250">Descripción</th>
+          <!--<th>Voluntarios</th>-->
+          <th colspan="4">Acciones</th>
+        </tr>
+
+        <% @courses_types.each do |courses_type| 
+            if courses_type.id != 0 %>
+            <tr>
+              <td><%= link_to courses_type.name, courses_type %></td>
+              <td width="250"><%= "#{truncate(courses_type.description, :length => 150)}" %></td>
+                           
+              <td><%= link_to 'Editar', edit_courses_type_url(courses_type) %></td>
+              <td align="center">
+               <% if courses_type.course_file %>
+                  <%= link_to 'Descargar archivo', url_for_file_column(courses_type, "course_file") %>
+                <% else %>
+                  <%= "Sin adjunto"   %>
+                <%end%>
+              </td>
+              <td><%= link_to 'Eliminar', courses_type, :confirm => '¿Está seguro que desea eliminar el curso de formación?', :method => :delete %></td>
+            </tr>
+          <% end 
+        end %>
+      </table>
+
+    </td>
+  </tr>
+</table>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

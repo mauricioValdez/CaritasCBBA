@@ -1,0 +1,34 @@
+<%if current_user%>
+<h1>Crear Historia del Curso</h1>
+
+<% form_for(@history_course, :html => {:multipart => true})do |f| %>
+  <%= f.error_messages %>
+  <table>
+    <tr><td>
+        *Grupo:</td><td>
+<%= f.text_field :idGroup, :maxlength => 255, :size => 30 %></td></tr>
+    <tr><td>
+    *Parroquia:</td><td>
+    <%= f.text_field :idParish, :maxlength => 255, :size => 30 %></td></tr>
+    <tr><td>
+    *Instructor:</td><td>
+    <%= f.text_field :instructor, :maxlength=>255, :size => 30 %></td></tr>
+    <tr><td>
+    *Fecha del Curso:</td><td>
+    <%= f.date_select :dateCourse %></td></tr>
+    
+    <tr><td>
+    *Curso:</td><td>
+        <%= select("post", "idCourse", Course.all.collect {|p| [ p.name, p.id ] }, {:prompt => ''}) %>
+          </td></tr><tr>
+        <td colspan="2">*  Estos campos son obligatorios</td>
+      </tr>
+  
+</table>
+    <%= f.submit 'Agregar Historia' %>
+  <% end %>
+
+<%= link_to 'Atras', history_courses_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

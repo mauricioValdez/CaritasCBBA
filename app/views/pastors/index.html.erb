@@ -1,0 +1,60 @@
+<%if current_user%>
+<h1>Párrocos</h1>
+
+<p>
+<% form_tag pastors_path, :method => 'get' do %>
+      Parámetro <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Buscar", :name => nil %>
+      <% end %>
+</p>
+
+  <table>
+    <tr>          
+      <td>
+        <%= link_to 'Reporte de Párroco por Parroquia', pastors_path(:xls) %>
+      </td> 
+    </tr>
+  </table>
+
+<table>
+  <tr align="right">
+    <td>
+      <%=button_to 'Crear Párroco', new_pastor_path %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+
+    <table border="3">
+      <tr id = 'head-table'>
+        <th>Nombre</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Teléfono</th>
+        <th>Celular</th>
+        <th colspan="3">Acciones</th>
+      </tr>
+
+      <% @pastors.each do |pastor| %> 
+      <% if pastor.state == true %>
+      <tr>
+        <td><%= link_to pastor.name, pastor %></td>
+        <td><%= h pastor.primary_last_name %></td>
+        <td><%= h pastor.second_last_name %></td>
+        <td><%= h pastor.phone_number %></td>
+        <td><%= h pastor.cellphone_number %></td>
+        <td><%= link_to 'Editar', edit_pastor_path(pastor) %></td>
+        <td><%= link_to 'Eliminar', pastor, :confirm => '¿Está seguro que desea eliminar al párroco?', :method => :delete %></td>
+        
+      </tr>
+    <% end %>
+      <%end%>
+    </table>
+
+    </td>
+  </tr>
+</table>
+<br />
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

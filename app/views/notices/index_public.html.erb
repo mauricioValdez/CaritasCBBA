@@ -1,0 +1,39 @@
+<div id="content-wrap">
+  <%= render :partial => "main_page/acordeon" %>
+
+
+  <div id="main" >
+<h1>Noticias</h1>
+
+<p>
+<% form_tag :controller => "notices", :action => "index_public",:id =>'find', :method => 'get' do %>
+      Título <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Buscar", :name => nil %>
+      <% end %>
+</p>
+ 
+<table>
+  <tr>
+    <td colspan="2">
+ 
+    <table border="3">
+      <tr id = 'head-table'>
+        <th>Título</th>
+        <th>Publicada</th>
+        <th>Fecha</th>
+      </tr>
+  
+      <% @notices.each do |notice| %>
+      <tr>
+        <td><p class="word_wrap"><%=link_to notice.title, :controller => "notices", :action => "show_public", :id =>notice %></p></td>
+        <td><%=h notice.show_if(notice.is_published) %></td>
+        <td><%=h notice.last_date %></td>
+      </tr>
+      <% end %>
+    </table>
+    </td>
+  </tr>
+</table>
+<br />
+</div>
+</div>

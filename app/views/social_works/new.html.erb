@@ -1,0 +1,107 @@
+<%if current_user%>
+  <CENTER><h1>Nueva Obra Social</h1></center>
+
+  <% form_for(@social_work) do |f| %>
+    <%= f.error_messages %>
+
+    <TABLE   ALIGN="CENTER">
+
+      <TR>
+        <td><%= f.label :parish, "* Parroquia" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :parish %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td><%= f.label :name, "* Nombre" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :name %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td><%= f.label :social_work, "* Obra Social de" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :social_work %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td><%= f.label :responsible, "* Responsable" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :responsible %></p>
+        </TD>
+      </TR>
+
+      <TR>
+        <td><%= f.label :location, "* Lugar" %></td> 
+
+        <TD >        
+          <p class="word_wrap"><%= f.text_field :location %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td>&nbsp;&nbsp;&nbsp;Teléfono</td>
+
+        <TD >
+          <p><%= f.text_field :phone %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td>&nbsp;&nbsp;&nbsp;Celular</td>
+
+        <TD >
+          <p><%= f.text_field :movil %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td>&nbsp;&nbsp;&nbsp;E-mail</td>
+
+        <TD >
+          <p><%= f.text_field :email %></p>
+        </TD>
+      </TR>
+      <TR>
+        <td>&nbsp;&nbsp;&nbsp;Transporte</td>
+
+        <TD >
+          <p><%= f.text_field :transport %></p>
+        </TD>
+      </TR>
+
+      <TR>
+        <td>&nbsp&nbsp&nbspDescripción</td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_area :description , :size => "60x10", :style => "resize:none"  %></p>
+        </TD>
+      </TR>
+
+
+      <TR>
+        <td><%= f.label :responsible_filling, "* Responsable del Llenado" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :responsible_filling %></p>
+        </TD>
+      </TR>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= f.submit 'Registrar' %>
+          <button type="reset">Limpiar</button>
+          <%= link_to 'Volver', social_works_path %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>*  Estos campos son obligatorios</td>
+      </tr>
+    </TABLE>   
+
+  <% end %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

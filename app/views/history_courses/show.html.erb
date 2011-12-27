@@ -1,0 +1,19 @@
+<%if current_user%>
+<h1>Ver Historia de Curso</h1>
+<table><tr><td>
+  <b>Grupo:</b></td><td>
+  <%=h @history_course.idGroup %></td></tr>
+  <tr><td><b>Parroquia:</b></td><td>
+  <%=h @history_course.idParish %></td></tr>
+  <tr><td><b>Instructor:</b></td><td>
+  <%=h @history_course.instructor %></td></tr>
+  <tr><td><b>Fecha del Curso</b></td><td>
+  <%=h @history_course.dateCourse %></td></tr>
+  <tr><td><b>Curso:</b></td><td>
+      <%=h Course.find(@history_course.idCourse).name %>
+</table>
+<%= link_to 'Actualizar', edit_history_course_path(@history_course) %> |
+<%= link_to 'Atras', history_courses_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

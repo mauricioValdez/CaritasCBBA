@@ -1,0 +1,90 @@
+<%if current_user%>
+<h1>Editar Parroquia</h1>
+
+<% form_for(@parish, :html => {:multipart => true}) do |p| %>
+  <%= p.error_messages %>
+    <table>
+      <tr>
+        <td><%= p.label :parish_name, "*&nbsp;Nombre de Parroquia" %></td>
+        <td><%= p.text_field :parish_name %></td>
+      </tr>
+      <tr>
+        <td><%= p.label :ubication, "*&nbsp;Ubicación" %></td>
+        <td><%= p.text_field :ubication %></td>
+      </tr>
+      <tr>
+        <tr>
+        <td>*&nbsp;Vicaria a la que Pertenece</td>
+        <td><select name="parish[vicariou_id]" style="width: 150px">
+            <% @vicariou.each do |vicariou| %>
+              <option value="<%=vicariou.id%>" <%='selected' if vicariou.id == @parish.vicariou_id %>>
+               <%=vicariou.name_vicariou%>
+              </option>
+            <%end%>
+          </select></td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Transporte</td>
+        <td><%= p.text_field :transport %></td>
+      </tr>
+      <tr>
+        <td><%= p.label :telephone, "*&nbsp;Teléfono de la Parroquia" %></td>
+        <td><%= p.text_field :telephone %></td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Contacto</td>
+        <td><%= p.text_field :contact %></td>
+      </tr>
+      
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Teléfono del Contacto</td>
+        <td><%= p.text_field :contact_telephone %></td>
+      </tr>
+      <tr>
+        <td>* Nombre del Párroco</td>
+        <td>
+          <select name="parish[pastor_id]" style="width: 195px">
+            <% @pastor.each do |pastor| %>
+              <option value="<%=pastor.id%>" <%='selected' if pastor.id == @parish.pastor_id %>>
+               <%=pastor.name+" "+pastor.primary_last_name+" "+pastor.second_last_name%>
+              </option>
+            <%end%>
+          </select>
+        </td>
+      </tr>
+          <tr>
+      <td>* <%= "Estado" %> </td>
+      <td><%= p.select  :current_state, Parish::PARISH_STATES %></td>
+    </tr>
+      
+      <tr>  
+      <td><%= "&nbsp;&nbsp;&nbsp;Fotografía de la Parroquia" %></td>
+      <% if @parish.parish_photo %>
+      <td><%=  image_tag url_for_file_column("parish", "parish_photo"), :size=>"300x200" %>
+      <% else %>
+      <td>No está disponible la fotografía
+      <% end %>
+      <br>
+      <%= file_column_field "parish", "parish_photo"%> </td>
+    </tr>
+      
+      <tr>
+        <td>*  Estos campos son obligatorios</td>
+      </tr>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= link_to 'Ver', @parish %> 
+          <%= p.submit 'Guardar' %>
+          <%= link_to 'Cancelar', parishes_path %>
+        </td>
+      </tr>
+    </table>
+
+<% end %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+
+

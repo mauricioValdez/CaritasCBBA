@@ -1,0 +1,29 @@
+<h1>Contáctanos</h1>
+
+
+<table border ="0">
+<tr><td colspan="2">
+   <br>Telf: 4268247, 4268559<br>
+Casilla: 4693          <br>
+Cochabamba - Bolivia   <br>
+Email: info@caritascbba.org   <br> <br></td>  </tr>
+</p>
+<%= form_tag :action => 'sendmailContactUs' %>
+  <tr>
+    <td><label for="email_subject">Nombre</label></td>
+    <td><%= text_field 'email', 'nameContact' %></td>
+  </tr>
+   <tr>
+    <td><label for="email_recipient">Email</label></td>
+    <td><%= text_field 'email', 'emailContact' %></td>
+  </tr>
+<tr>
+    <td><label for="email_message">Mensaje</label></td>
+    <td><%= text_area 'email', 'message', :size => "60x10", :style => "resize:none" %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><%= submit_tag "Enviar" %></td>
+  </tr>
+<%= form_tag %>
+</table>

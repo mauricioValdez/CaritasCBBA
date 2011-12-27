@@ -1,0 +1,70 @@
+<%= stylesheet_link_tag "jquery-ui-1.8.13.custom"  %>
+<%= stylesheet_link_tag "ui.dropdownchecklist.themeroller"  %>
+
+<%= javascript_include_tag "jquery-1.6.1.min"  %>
+<%= javascript_include_tag "jquery-ui-1.8.13.custom.min"  %>
+<%= javascript_include_tag "ui.dropdownchecklist-1.4-min"  %>
+<%if current_user%>
+<CENTER><h1>Nuevo Curso</h1></center>
+
+<% form_for(@course) do |f| %>
+  <%= f.error_messages %>
+
+<%= f.hidden_field :workshop_id, :value => @course.workshop_id %>
+      <%= f.hidden_field :courses_types_id, :value => @course.courses_types_id %> 
+<%= f.hidden_field :name, :value => CoursesType.find(@course.courses_types_id).name %> 
+
+<TABLE   ALIGN="CENTER">      
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;Nombre<br /></td>
+    <td><%= h CoursesType.find(@course.courses_types_id).name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :responsible, "* Responsable" %><br /></td>
+    <td><%= f.text_field :responsible %></td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp&nbsp&nbspFecha Inicial<br /></td>
+    <td><%= f.date_select :date_ini %></td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp&nbsp&nbspDescripción<br /></td>
+    <td><%= f.text_area :description, :rows=>6, :cols=>22 , :style => "resize:none"%></td>
+  </tr>
+  
+  <tr>
+      <td>&nbsp;&nbsp;&nbsp;Seleccione los Asistentes</td>
+      <td>
+   
+            <% lista_voluntarios = Volunteer.all.map { |volunteer| [volunteer.name.to_s + " " + volunteer.last_name, volunteer.id] } %>            
+            <%= select_tag "lista_voluntarios", options_for_select(lista_voluntarios),:multiple=>true %>                    
+      </td>
+    </tr>
+    
+    <tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Registrar'%>
+        <button type="reset">Limpiar</button>
+        <%= link_to 'Volver', edit_workshop_path(@course.workshop_id) %>
+      </td>
+    </tr>
+    
+        <tr>
+      <td>*  Estos campos son obligatorios</td>
+    </tr>
+    
+    </TABLE>   
+<% end %>
+
+
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+
+<script type="text/javascript">
+        $(document).ready(function() {            
+            $("#lista_voluntarios").dropdownchecklist( { emptyText: "Por favor Seleccione Uno", width: 150 } );
+        });
+</script>

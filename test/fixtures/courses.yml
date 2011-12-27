@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  responsible: MyString
+  date_ini: 2011-11-19
+  description: MyText
+
+two:
+  name: MyString
+  responsible: MyString
+  date_ini: 2011-11-19
+  description: MyText

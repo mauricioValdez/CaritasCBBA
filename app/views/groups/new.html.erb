@@ -1,0 +1,58 @@
+<%if current_user%>
+  <h1>Nuevo Grupo</h1>
+
+  <% form_for(@group, :html => {:multipart => true}) do |f| %>
+    <%= f.error_messages %>
+
+    <table>
+
+      <tr>
+        <td><%= f.label :name, "* Nombre" %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Responsable</td>
+        <td>
+          <select name="group[volunteer_id]" style="width: 195px">
+            <option value="-1"></option>
+            <% if @volunteers
+              @volunteers.each do |volunteer| %>
+                <option value="<%=volunteer.id%>">
+                  <%=volunteer.to_s%>
+                </option>
+              <%end%>
+            <%end%>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Parroquia a la que Pertenece</td>
+        <td><select name="group[parish_id]" style="width: 150px"> 
+            <% if @parish  
+              @parish.each do |parish| %>
+                <option value="<%=parish.id%>">
+                  <%=parish.parish_name%>
+                </option>
+              <%end%>
+            <%end%>
+          </select></td>
+      </tr> <tr>
+        <td><%= "&nbsp;&nbsp;&nbsp;Fotografia o Insignia del Grupo"  %> </td>
+        <td><%= file_column_field "group",  "group_photo" %></td>
+      </tr>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= f.submit 'Registrar' %>
+          <button type="reset">Limpiar</button>
+          <%= link_to 'Cancelar', groups_path %>
+        </td>
+      </tr>
+
+    </table>
+  <% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+

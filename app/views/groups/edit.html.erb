@@ -1,0 +1,64 @@
+<%if current_user%>
+  <h1>Editar Grupo</h1>
+
+  <% form_for(@group, :html => {:multipart => true}) do |f| %>
+    <%= f.error_messages %>
+
+    <table>
+
+      <tr>
+        <td><%= f.label :name, "* Nombre" %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+
+      <tr>
+        <td>&nbsp;&nbsp;&nbsp;Responsable</td>
+        <td>
+          <select name="group[volunteer_id]" style="width: 195px">
+            <option value="-1"></option>
+            <% if @volunteers
+              @volunteers.each do |volunteer| %>
+                <option value="<%=volunteer.id%>" <%='selected' if volunteer.id == @group.volunteer_id %>>
+                  <%=volunteer.to_s%>
+                </option>
+              <% end 
+            end%>
+          </select>
+        </td>
+      </tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;Parroquia a la que Pertenece</td><td>
+          <select name="group[parish_id]" style="width: 150px">
+            <% @parish.each do |parish| %>
+              <option value="<%=parish.id%>" <%='selected' if parish.id == @group.parish_id %>>
+                <%=parish.parish_name%>
+              </option>
+            <%end%>
+          </select>
+
+
+        </td></tr>
+      <tr>  
+        <td><%= "&nbsp;&nbsp;&nbsp;Fotografía o Insignia del Grupo" %></td>
+        <% if @group.group_photo %>
+          <td><%=  image_tag url_for_file_column("group", "group_photo"), :size=>"300x200" %>
+          <% else %>
+          <td>No está disponible la fotografía
+          <% end %>
+          <br>
+          <%= file_column_field "group", "group_photo"%> </td>
+      </tr>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= f.submit 'Guardar' %>
+          <%= link_to 'Ver', :action => :show %>
+          <%= link_to 'Cancelar', groups_path %>
+        </td>
+      </tr>
+
+    </table>
+
+  <% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

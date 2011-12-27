@@ -1,0 +1,44 @@
+<CENTER><h1>Campa&ntilde;a</h1></center>
+<% form_for(@campaing, :html => {:multipart => true}) do |f| %>
+<TABLE align="center" width="700">
+
+<TR>
+<TD align="center">
+<center>
+  <p>
+  <b>Nombre </b>
+  <%=h @campaing.name %>
+ </p>
+ </center>
+</TD>
+</TR>
+
+<tr align="left">
+      <td><%= link_to 'Eliminar todas las fotos', :confirm => "¿Está seguro que desea eliminar todas las fotos de la campaña?", :controller => "campaings", :action => "destroy_all_photos", :id => @campaing  %> </td>
+</tr>
+
+<tr align="center">
+  <td>
+    <% @campaing.campaing_photos.each do |photo| %>
+    <%= image_tag photo.data.url, :size => "320x240" %>
+    <% end %>
+  </td>
+</tr>
+
+<tr>
+  <td>
+  <%= add_photo(f) %>
+  </td>
+</tr>
+
+<tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Actualizar' %>
+        <%= link_to 'Volver', campaings_path %>
+      </td>
+    </tr>
+</TABLE>
+
+<% end %>
+
+

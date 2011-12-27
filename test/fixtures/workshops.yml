@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pastor_or_administrator: MyString
+  parish: MyString
+  phone: MyString
+  responsible_for_training: MyString
+  touch: MyString
+  sensitization: false
+  course1: false
+  course2: false
+  course3: false
+  course4: false
+  course5: false
+  course6: false
+  follow_up: MyString
+  observation: MyString
+  outstanding: MyString
+  not_accept: false
+
+two:
+  pastor_or_administrator: MyString
+  parish: MyString
+  phone: MyString
+  responsible_for_training: MyString
+  touch: MyString
+  sensitization: false
+  course1: false
+  course2: false
+  course3: false
+  course4: false
+  course5: false
+  course6: false
+  follow_up: MyString
+  observation: MyString
+  outstanding: MyString
+  not_accept: false

@@ -1,0 +1,47 @@
+<%if current_user%>
+<h1>Vicarias</h1>
+
+<% form_tag vicarious_path, :method => 'get' do %>
+  <p>
+    Parámetro <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+</p>
+<% end %>
+<table>
+  <tr>
+    <td>
+      <DIV align="right">   
+
+<%= button_to 'Crear Vicaria', new_vicariou_path %>
+
+</div>
+<tr>
+    <td>
+<table border="3">
+  <tr id ='head-table'>
+    <th>Nombre Vicaria</th>
+    <th>Ubicación</th>
+    <th>Teléfono</th>
+    <th colspan="3"> Acciones</th>
+  </tr>
+
+<% @vicarious.each do |vicariou| %>
+  <%  if vicariou.state %>  
+      <tr>
+        <td><%= link_to  vicariou.name_vicariou,vicariou %></td>
+        <td><%=h vicariou.ubication %></td>
+        <td><%=h vicariou.telephone %></td>
+        <td><%= link_to 'Editar', edit_vicariou_path(vicariou) %></td>
+        <td><%= link_to 'Eliminar', vicariou, :confirm => '¿Está seguro que desea eliminar la vicaria?', :method => :delete %></td>
+      </tr>
+    <%end%>
+  <% end %>
+</table>
+</td>
+  </tr>
+</table>
+
+<br />
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,32 @@
+<%if current_user%>
+  <h1>Ver Vicaria</h1>
+  <table>
+    <tr><td><b>Nombre de Vicaria</b></td><td><%=h @vicariou.name_vicariou %></td></tr>
+    <tr><td><b>Ubicación</b></td><td><%=h @vicariou.ubication %></td></tr>
+    <tr><td><b>Transporte</b></td><td><%=h @vicariou.transport %></td></tr>
+    <tr><td><b>Teléfono</b></td><td><%=h @vicariou.telephone %></td></tr>
+    <tr><td><b>Nombre del Vicario</b></td><td><%=h @pastor.name+" "+@pastor.primary_last_name+" "+@pastor.second_last_name %></td></tr>
+  </table>
+  <br>
+  <h1>Parroquias Asociadas</h1>
+  <table border="3">
+    <tr id ='head-table'>
+      <th>Nombre de Parroquia</th>
+      <th>Ubicación</th>
+      <th>Teléfono</th>
+    </tr>
+
+    <% @parish.each do |parish| %>
+      <tr>
+        <td><%= link_to parish.parish_name,parish %></td>
+        <td><%=h parish.ubication %></td>
+        <td><%=h parish.telephone %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'Editar', edit_vicariou_path(@vicariou) %> |
+  <%= link_to 'Volver', vicarious_path %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

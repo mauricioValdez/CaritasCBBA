@@ -1,0 +1,34 @@
+<%if current_user%>
+<h1>Ver Donacion</h1>
+
+<table>
+
+  <tr>
+    <td>
+      <b>Nombre:</b> </td>
+    <td>
+      <%=h @donation.name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>Cantidad:</b> </td>
+    <td>
+      <%=h @donation.amount %>
+    </td>
+    <td>
+      <b>Unidad:</b> </td>
+    <td>
+      <%=h @donation.unit %>
+    </td>
+  </tr>
+  <tr align="right">
+    <td colspan="2">
+      <%= link_to 'Editar', edit_donation_path(@donation) %> |
+      <%= link_to 'Volver', campaings_path %>
+    </td>
+  </tr>
+</table>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

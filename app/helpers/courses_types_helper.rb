@@ -1,0 +1,2 @@
+module CoursesTypesHelper
+end

@@ -1,0 +1,75 @@
+<h1>Campañas</h1>
+
+<p>
+  <% form_tag campaings_path, :method => 'get' do %>
+    Nombre <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</p>
+
+<%#*<table>%>
+  <%#*<tr>%>
+    <%#*<td><center>Buscar Por:</center></td>%>
+    <%#*<td colspan="2">%>
+      <%#*<select>%>  
+        <%#*<option id="nombre"> Nombre </option>%>
+        <%#*<option id="lugar"> Lugar </option>%>
+      <%#*</select>%>
+    <%#*</td>%>
+  <%#*</tr>%>
+  <%#*<tr>%>
+    <%#*<td>Ingrese el valor:</td>%>
+    <%#*<td><input type="text" id="busqueda"/></td>%>
+    <%#*<td><%= submit_tag "Buscar", :name => nil %>
+  <%#*</tr>%>
+<%#*</table>%>
+<br/>
+
+ 
+<br/>
+<br/>
+
+
+
+<table>
+  <tr align="right">
+    <td>
+      <% if current_user %>
+        <%= button_to 'Registrar Campa&ntilde;a', new_campaing_path %>
+      <%end%>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table border="3">
+        <tr id = 'head-table'>
+          <th>Nombre</th>
+          <th>Lugar</th>
+          <th>Fecha de Finalización</th>
+          <th>Responsable</th>
+          <% if current_user %>
+            <th colspan="4">Acciones</th>
+            <%end%>
+        </tr>
+
+        <% @campaings.each do |campaing| %>
+          <tr>
+            <td><%=link_to campaing.name, campaing %></td>
+            <td><p class="word_wrap"><%=h campaing.location %></p></td>
+            <td><%=h campaing.date_end %></td>
+            <td><p class="word_wrap"><%=h campaing.responsible %></p></td>
+            <% if current_user %>
+              <td><%= link_to 'Editar', edit_campaing_path(campaing) %></td> 
+              <td><%= link_to 'Fotos', :controller => "campaings", :action=>"add_photos", :id => campaing %></td>
+              <%#*<td><%= link_to "Donaciones", :controller => "donations", :campaing=> campaing.id%>
+              <%#*</td>%>
+            <%end%>
+          </tr>
+        <% end %>
+          
+      </table>
+      
+    </td>      
+  </tr>  
+</table>
+<br/>

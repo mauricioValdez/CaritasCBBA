@@ -1,0 +1,52 @@
+<%if current_user%>
+<h1>Ver Grupo</h1>
+
+<table>
+
+  <tr>
+    <td><b>Nombre</b></td>
+    <td><%=h @group.name %></td>
+  </tr>
+
+  <tr>
+    <td><b>Responsable</b></td>
+    <td><%=h @group.volunteer %></td>
+  </tr>
+
+  <tr>
+    <td><b>Voluntarios</b></td>
+    <td>
+      <ul style="list-style-type: disc;">
+      <% volunteers = Volunteer.find(:all,:conditions => ['group_id = ? ', "#{@group.id}"])
+         volunteers.each do |volunteer|%>
+        <li><%=h volunteer.to_s %>
+      <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+      <td>
+        <b>Parroquia a la que Pertenece</b>
+      </td>
+      <td><%=h if @group.parish_id.nil?
+         @parish.parish_name %></td>
+    </tr>
+<tr>  
+      <td><b><%= "Fotografía o Insignia del Grupo" %></b></td>
+      <% if @group.group_photo %>
+      <td><%=  image_tag url_for_file_column("group", "group_photo"), :size=>"300x200" %></td>
+      <% else %>
+      <td>No está disponible la fotografía</td>
+      <% end   %>
+    </tr>
+  <tr align="right">
+    <td colspan="2">
+      <%= link_to 'Editar', edit_group_path(@group) %> |
+      <%= link_to 'Volver', groups_path %>
+    </td>
+  </tr>
+
+</table>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,73 @@
+<%if current_user%>
+<h1>Parroquias</h1>
+
+<% form_tag parishes_path, :method => 'get' do %>
+  <p>
+    Parámetro <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  </p>
+<% end %>
+  <table>
+        <tr>
+          <td>
+             <%= link_to 'Reporte de Parroquias por Vicaria', parishes_path(:xls) %>
+          </td>
+          <td>
+             <%= link_to 'Reporte de Parroquias Ordenado por Vicaria', :controller => :parishes, :action => 'report.xls' %>
+          </td>
+          <td>
+             <%= link_to 'Reporte de Cursos por Parroquia', workshops_path(:xls) %>
+          </td> 
+            </tr>
+      </table>
+<table>
+  <tr>
+    <td>
+      <DIV align="right">   
+        <%= button_to 'Crear Parroquia', new_parish_path %>
+      </div>
+    </td>
+      
+            
+  <tr>
+    <td>
+      
+      <table border="3">
+        <tr id ='head-table'>
+          <th>Nombre de Parroquia</th>
+          <th>Ubicación</th>
+          <th>Teléfono</th>    
+          <th>Estado</th>
+          <th colspan="3"> Acciones</th>
+        </tr>
+
+        <% @parishes.each do |parish| %>
+          <%if parish.state %>
+            <tr>
+              
+              <td><%= link_to  parish.parish_name,parish %></td>
+              <td><%=h parish.ubication %></td>
+              <td><%=h parish.telephone %></td>              
+              <td><%=h parish.current_state %></td>
+                            
+              
+              <td><%= link_to 'Editar', edit_parish_path(parish) %></td>
+              <% if parish.current_state != "En Contacto" && parish.current_state != "No Alcanzada" && parish.current_state != "No Aceptada"%>                                
+                  <td><%= link_to "Taller", edit_workshop_path(Workshop.searchByParish(parish.id)) %></td>                   
+                <%else%>
+                  <td></td>
+                <%end%>                                          
+<!--              <td><%= link_to 'Eliminar', parish, :confirm => '¿Está seguro que desea eliminar la parroquia?', :method => :delete %></td> -->
+            </tr>
+          <%end%>
+        <% end %>
+      </table>
+    </td>
+    
+  </tr>
+</table>
+
+<br />
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

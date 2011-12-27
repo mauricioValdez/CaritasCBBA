@@ -1,0 +1,160 @@
+       <% if ((@socialWorks.count>0)||(@campaings.count>0))%>
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/jquery_002.js"></script>
+    <script type="text/javascript" src="javascripts/carusel.js"></script>
+    <script language="JavaScript" align="Center">
+  window.onload = function () {
+        $(".slidetabs").data("slideshow").play();
+}
+</script>
+                        <script>
+                        $(function() {	
+                            $("#jqt3").addClass("active");
+                            $("<div/>", { id: 'footercrumb' }).appendTo($("#content")).html($("#breadcrumb").html());
+                        });
+                      </script>
+              <style>	
+              ul.css-tabs li {
+                  list-style-image:none !important;
+                  list-style-type:none !important;
+                  margin:0 !important;
+              }
+
+              div.css-panes h2 {
+                  margin-top:0px;		
+              }
+
+              h1 {
+                  background-position:0 0px;		
+              } 
+              </style>
+          <%= stylesheet_link_tag "tabs-slideshow"  %>
+      <a id="backward">prev</a>
+      <div class="images" >
+            <%
+          @i=0
+          @c=0
+          @s=0
+          @link = ""
+          while (@i < 7) &&((@campaings.count>@c)||(@s<@socialWorks.count)) do %>
+              <div style="display: none;" >
+            <%  if((@s<@socialWorks.count)&&(@c<@campaings.count))
+                  if(@socialWorks[@s].created_at>@campaings[@c].date_ini)
+                    @s1=@socialWorks[@s] 
+                    @p=SocialWork.getRandomPicture(@s1.id)%>
+                <%= link_to '<h2>'+@s1.name+'</h2>',@s1 %>
+                <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p.id%>/original/<%=@p.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+	            <%
+                    @s+=1
+                  else
+                    @c1 = @campaings[@c]  
+                    @p1 = Campaing.getRandomPicture(@c1.id)%>
+                <%= link_to '<h2>'+@c1.name+'</h2>',@c1 %>
+                <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p1.id%>/original/<%=@p1.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+	        
+                    <%
+                    @c+=1
+                  end
+                else
+                  if(@s<@socialWorks.count)
+                      @s1=@socialWorks[@s]  
+                @p=SocialWork.getRandomPicture(@s1.id)%>
+                <%= link_to '<h2>'+@s1.name+'</h2>',@s1 %>
+                <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p.id%>/original/<%=@p.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+	             <%
+                      @s+=1
+                  end
+                  if(@c<@campaings.count)
+                      @c1 = @campaings[@c] 
+                      @p1 = Campaing.getRandomPicture(@c1.id)%>
+                <%= link_to '<h2>'+@c1.name+'</h2>',@c1 %>
+                <img style="float:left;margin:0 30px 20px 0" src="/system/datas/<%=@p1.id%>/original/<%=@p1.data_file_name%>" alt="Flying screens" height="200" width="400"/>
+	        
+                    <%
+                      @c+=1
+                  end
+              end
+              @link = @link+'<a class="" href="#" >*</a>'
+          @i=@i+1
+           %>
+                
+              </div>
+       <% end %>
+         </div>
+<a id="forward">next</a>
+<div class="slidetabs" >
+  <%= @link %>
+</div>
+
+<div align="center" style="clear: both; margin: 0px 0pt; text-align: center; padding-right: 0px;">
+<button onclick='$(".slidetabs").data("slideshow").play();'>Play</button>
+<button onclick='$(".slidetabs").data("slideshow").stop();'>Stop</button>
+</div>
+<script language="JavaScript">
+$(function() {
+$(".slidetabs").tabs(".images > div", {
+	effect: 'fade',
+	fadeOutSpeed: "slow",
+	rotate: true
+}).slideshow();
+});
+</script>
+<% else %>
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/jquery_002.js"></script>
+    <script type="text/javascript" src="javascripts/carusel.js"></script>
+    <script language="JavaScript" align="Center">
+  window.onload = function () {
+        $(".slidetabs").data("slideshow").play();
+}
+</script>
+                        <script>
+                        $(function() {	
+                            $("#jqt3").addClass("active");
+                            $("<div/>", { id: 'footercrumb' }).appendTo($("#content")).html($("#breadcrumb").html());
+                        });
+                      </script>
+              <style>	
+              ul.css-tabs li {
+                  list-style-image:none !important;
+                  list-style-type:none !important;
+                  margin:0 !important;
+              }
+
+              div.css-panes h2 {
+                  margin-top:0px;		
+              }
+
+              h1 {
+                  background-position:0 0px;		
+              } 
+              </style>
+          <%= stylesheet_link_tag "tabs-slideshow"  %>
+      <a id="backward">prev</a>
+      <div class="images" >
+              <div style="display: none;" >
+  <h2>Pastoral Social Caritas</h2>
+                <img style="float:left;margin:0 30px 20px 0" src="/images/caritas.png" alt="Flying screens" height="200" width="400"/>
+	        
+              </div>
+         </div>
+<a id="forward">next</a>
+<div class="slidetabs" >
+            <a class="" href="#" >*</a>
+</div>
+
+<div align="center" style="clear: both; margin: 0px 0pt; text-align: center; padding-right: 0px;">
+<button onclick='$(".slidetabs").data("slideshow").play();'>Play</button>
+<button onclick='$(".slidetabs").data("slideshow").stop();'>Stop</button>
+</div>
+<script language="JavaScript">
+$(function() {
+$(".slidetabs").tabs(".images > div", {
+	effect: 'fade',
+	fadeOutSpeed: "slow",
+	rotate: true
+}).slideshow();
+});
+</script>
+
+      <% end %>

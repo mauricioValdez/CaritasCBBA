@@ -1,0 +1,64 @@
+
+<script language="JavaScript" align="Center">
+  window.onload = function () {
+        $(".slidetabs").data("slideshow").play();
+}
+</script>
+<div id="content" >
+		<script>
+        $(function() {	
+            $("#jqt3").addClass("active");
+            $("<div/>", { id: 'footercrumb' }).appendTo($("#content")).html($("#breadcrumb").html());
+        });
+        </script>
+		<style>	
+        ul.css-tabs li {
+            list-style-image:none !important;
+            list-style-type:none !important;
+            margin:0 !important;
+        }
+        
+        div.css-panes h2 {
+            margin-top:0px;		
+        }
+        
+        h1 {
+            background-position:0 0px;		
+        } 
+        </style>
+    <%= stylesheet_link_tag "tabs-slideshow"  %>
+<a id="backward">prev</a>
+<div class="images" >
+	<div style="display: none;" >
+          <h2> Titulo de la Noticia o Campaña</h2>	
+          <img align="Center" style="float:none;margin:0px 30px 20px 0" src="/notice/notice_photo/0000/0001/25iu077asdfadsfadsf.JPG" alt="Flying screens" height="200" width="400"/>
+         
+	</div>
+	<div style="display: none;" >
+		<img style="float:left;margin:0 30px 20px 0" src="/notice/notice_photo/0000/0001/captura.JPG" alt="Flying screens" height="200" width="400"/>
+		</div>
+	<div style="display: none;" >
+		<img style="float:left;margin:0 30px 20px 0" src="/notice/notice_photo/0000/0001/anillo-unico.JPG" alt="Flying screens" height="200" width="400"/>
+	</div>
+</div>
+<a id="forward">next</a>
+<div class="slidetabs">
+	<a class="" href="#" style="visibility:hidden">*</a>
+	<a class="current" href="#" style="visibility:hidden">*</a>
+	<a class="current" href="#" style="visibility:hidden">*</a>
+</div>
+
+<div align="center" style="clear: both; margin: 0px 0pt; text-align: center; padding-right: 0px;">
+<button onclick='$(".slidetabs").data("slideshow").play();'>Play</button>
+<button onclick='$(".slidetabs").data("slideshow").stop();'>Stop</button>
+</div>
+<script language="JavaScript">
+$(function() {
+$(".slidetabs").tabs(".images > div", {
+	effect: 'fade',
+	fadeOutSpeed: "slow",
+	rotate: true
+}).slideshow();
+});
+</script>
+</div>

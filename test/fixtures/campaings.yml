@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  location: MyString
+  description: MyText
+  date_ini: 2011-10-11
+  date_end: 2011-10-11
+  responsible: MyString
+  state: MyString
+
+two:
+  name: MyString
+  location: MyString
+  description: MyText
+  date_ini: 2011-10-11
+  date_end: 2011-10-11
+  responsible: MyString
+  state: MyString

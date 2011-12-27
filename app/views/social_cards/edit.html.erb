@@ -1,0 +1,158 @@
+<%if current_user%>
+<h1>Editar Ficha Social</h1>
+
+<% form_for(@social_card, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+<h2>Información de la Parroquia</h2>
+  <table width="50%" border="0">
+  <tr>
+    <td width="15"> Parroquia</td>
+    <td width="35%">  <select name="social_card[parish_id]">
+            <% @parishes.each do |parish| %>
+              <option value="<%=parish.id%>" <%='selected' if parish.id == @social_card.parish_id %>>
+                <%=parish.parish_name%>
+              </option>
+            <%end%>
+          </select></td>
+   </tr>
+  <tr>
+    <td width="15%">Fecha</td>
+    <td width="35%"> <%= f.date_select :date%></td>
+  </tr>
+</table>
+<br />
+<h2>Información Personal</h2>
+<table border="0">
+  <tr>
+    <td width="15%"><p><%= f.label :name, "* Nombre" %></p></td>
+    <td width="35%"><%= f.text_field :name %></td>
+    <td width="15%">* Estado Civil</td>
+    <td width="35%"><select name="social_card[marital_status]">
+         <option value="">Escoja una Opción</option>
+        <option value="Soltero/a" <%='selected' if @social_card.marital_status == 'Soltero/a' %>> Soltero/a</option>
+        <option value="Casado/a" <%='selected' if @social_card.marital_status == 'Casado/a' %>>>Casado/a</option>
+        <option value="Viudo/a" <%='selected' if @social_card.marital_status == 'Viudo/a' %>>>Viudo/a</option>
+      </select></td>
+   </tr>
+  <tr>
+     <td width="15%">CI</td>
+    <td width="35%"><%= f.text_field :identity_card %></td>
+    <td width="15%"><%= f.label :gender, "* Sexo" %></td>
+    <td width="35%">Masculino
+      <%= f.radio_button(:gender, "Masculino") %>
+      Femenino
+      <%= f.radio_button(:gender, "Femenino") %></td>
+  </tr>
+  <tr>
+    <td>Fecha de Nacimiento</td>
+    <td><%= f.date_select :birthday,:start_year => 1935 %></td>
+    <td >Lugar de Nacimiento</td>
+    <td ><%= f.text_field :birthday_location %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :address, "* Domicilio" %></td>
+    <td><%= f.text_field :address %></td>
+    <td >Referencia de Ubicación</td>
+    <td ><%= f.text_field :location_reference %></td>
+  </tr>
+  <tr>
+    <td>Teléfono Fijo</td>
+    <td><%= f.text_field :phone %></td>
+    <td >Celular</td>
+    <td ><%= f.text_field :movil %></td>
+  </tr>
+  <tr>
+    <td>Grado Escolar</td>
+    <td><%= f.text_field :grade_school %></td>
+    <td ><%= f.label :occupation, "* Ocupación" %></td>
+    <td ><%= f.text_field :occupation %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :family_members, "* Total de Miembros en la Familia" %></td>
+    <td><%= f.text_field :family_members %></td>
+    <td >Parroquia a la que Pertenece</td>
+    <td ><%= f.text_field :parish_belongs %></td>
+  </tr>
+
+  <tr>
+    <td>Derivado Canalizado Por</td>
+    <td colspan="5"><%= f.text_field :derivative_by %></td>
+  </tr>
+  <tr>
+    <td>Historia Familiar</td>
+    <td colspan="5"><%= f.text_area :family_history, :rows =>3 , :style => "resize:none"%></td>
+  </tr>
+</table>
+ <h2>Información de Referencia</h2>
+  <table width="100%" border="0">
+  <tr>
+    <td width="21%"><%= f.label :reference_person, "* Persona de Referencia" %></td>
+    <td><%= f.text_field :reference_person %></td>
+    <td>Edad</td>
+    <td><%= f.text_field :age_reference %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :address_reference, "* Domicilio" %></td>
+    <td colspan="3"><%= f.text_field :address_reference %></td>
+  </tr>
+  <tr>
+    <td>Teléfono</td>
+    <td width="29%"><%= f.text_field :phone_reference %></td>
+    <td width="21%">Celular</td>
+    <td width="29%"><%= f.text_field :movil_reference %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :occupation_reference, "* Ocupación" %></td>
+    <td colspan="3"><%= f.text_field :occupation_reference %></td>
+  </tr>
+</table>
+<br />
+  <h2>Otros Datos</h2>
+<table  border="0">
+  <tr>
+    <td width="21%">Caso </td>
+    <td width="79%"> <%= f.radio_button(:type_of_case, "Nuevo") %>
+    Nuevo
+      <%= f.radio_button(:type_of_case, "Conocido") %> Conocido</td>
+  </tr>
+  <tr>
+    <td><p>¿Ha recibido ayuda en otras Instituciones o Parroquias?
+    </p></td>
+    <td>Sí <%= f.radio_button(:did_you_get_another_help, "Sí") %>
+      No
+      <%= f.radio_button(:did_you_get_another_help, "No") %></td>
+  </tr>
+  <tr>
+    <td>¿De qué tipo?
+    </td>
+     <td><%= f.text_field :what_kind%></td>
+  </tr>
+  <tr>  
+      <td><%= "Fotografía de la Persona" %></td>
+      <% if @social_card.social_card_photo %>
+      <td><%=  image_tag url_for_file_column("social_card", "social_card_photo"), :size=>"300x200" %>
+      <% else %>
+      <td>No está disponible la fotografía
+      <% end %>
+      <br>
+      <%= file_column_field "social_card", "social_card_photo"%> </td>
+    </tr>
+  <tr>
+        <td>*  Estos campos son obligatorios</td>
+      </tr>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= link_to 'Ver', @parish %> 
+          <%= f.submit 'Guardar' %>
+          <%= link_to 'Cancelar', social_cards_path %>
+        </td>
+      </tr>
+</table>
+ 
+
+<% end %>
+
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

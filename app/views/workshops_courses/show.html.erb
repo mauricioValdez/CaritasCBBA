@@ -1,0 +1,17 @@
+<%if current_user%>
+<p>
+  <b>Workshop:</b>
+  <%=h @workshops_course.workshop_id %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%=h @workshops_course.course_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_workshops_course_path(@workshops_course) %> |
+<%= link_to 'Back', workshops_courses_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

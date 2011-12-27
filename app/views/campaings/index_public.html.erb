@@ -1,0 +1,45 @@
+
+<div id="content-wrap">
+
+  <div id="main" >
+<h1>Campañas</h1>
+
+<p>
+  <% form_tag  :controller => "campaings", :action => "index_public",:id =>'find', :method => 'get' do %>
+    Nombre <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</p>
+<br/>
+<br/>
+<br/>
+
+<table>
+  <tr>
+    <td>
+      <table border="3">
+        <tr id = 'head-table'>
+          <th>Nombre</th>
+          <th>Lugar</th>
+          <th>Fecha de Inicio</th>
+          <th>Fecha de Finalización</th>
+        </tr>
+
+        <% @campaings.each do |campaing| %>
+          <tr>
+            <td><%=link_to campaing.name, :controller => "campaings", :action => "show_public", :id =>campaing %></td>
+            <td><p class="word_wrap"><%=h campaing.location %></p></td>
+            <td><%=h campaing.date_ini %></td>
+            <td><%=h campaing.date_end %></td>
+
+        <% end %>
+          
+      </table>
+      
+    </td>      
+  </tr>  
+</table>
+<br/>
+</div>
+  <%= render :partial => "main_page/acordeon" %>
+</div>

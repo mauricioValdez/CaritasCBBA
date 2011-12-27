@@ -1,0 +1,30 @@
+<%if current_user%>
+<h1>Historial de Cursos</h1>
+
+<p>
+
+</p>
+ 
+<table>
+  <tr>
+    <td colspan="2">
+    <table border="3">
+      <tr id = 'head-table'>
+        <th>Curso</th>
+        <th colspan="1">Acciones</th>
+      </tr>
+
+      <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, course %></td>
+        <td><%= link_to 'Editar', edit_course_path(course) %></td>
+      </tr>
+      <% end %>
+    </table>
+    </td>
+  </tr>
+</table>
+<br />
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

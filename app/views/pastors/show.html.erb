@@ -1,0 +1,48 @@
+<%if current_user%>
+<h1>Ver Párroco</h1>
+
+
+<table>
+
+  <tr>
+    <td><b>Nombre</b></td>
+    <td><%=h @pastor.name %></td>
+  </tr>
+
+  <tr>
+    <td><b>Apellido Paterno</b></td>
+    <td><%=h @pastor.primary_last_name %></td>
+  </tr>
+
+  <tr>
+    <td><b>Apellido Materno</b></td>
+    <td><%=h @pastor.second_last_name %></td>
+  </tr>  
+  <tr>
+    <td>
+
+      <b>Fecha de Nacimiento (día/mes)</b></td><td>
+      <%=h @pastor.date_of_birth.strftime("%d/%m") %>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Teléfono</b></td>
+    <td><%=h @pastor.phone_number %></td>
+  </tr>  
+  
+  <tr>
+    <td><b>Celular</b></td>
+    <td><%=h @pastor.cellphone_number %></td>
+  </tr>  
+  
+  <tr align="right">
+    <td colspan="2">
+      <%= link_to 'Editar', edit_pastor_path(@pastor) %> |
+      <%= link_to 'Volver', pastors_path %>
+    </td>
+  </tr>
+
+</table>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

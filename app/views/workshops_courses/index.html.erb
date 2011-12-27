@@ -1,0 +1,26 @@
+<%if current_user%>
+<h1>Listing workshops_courses</h1>
+
+<table>
+  <tr>
+    <th>Workshop</th>
+    <th>Course</th>
+  </tr>
+
+<% @workshops_courses.each do |workshops_course| %>
+  <tr>
+    <td><%=h workshops_course.workshop_id %></td>
+    <td><%=h workshops_course.course_id %></td>
+    <td><%= link_to 'Show', workshops_course %></td>
+    <td><%= link_to 'Edit', edit_workshops_course_path(workshops_course) %></td>
+    <td><%= link_to 'Destroy', workshops_course, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New workshops_course', new_workshops_course_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,36 @@
+<div id="content-wrap">
+
+  <div id="main" >
+<h1>Obra Social</h1>
+
+<p>
+  <% form_tag  :controller => "social_works", :action => "index_public",:id =>'find', :method => 'get' do %>
+    Parámetro <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  <% end %>
+</p>
+
+<table>
+  <tr>
+    <td colspan="2">
+      <table border ="3">
+        <tr id="head-table">
+          <th>Nombre</th>
+          <th>Responsable</th>
+          <th>Ubicación</th>
+        </tr>
+        <% @social_works.each do |social_work| %>
+          <tr>
+            <td><%=link_to (h social_work.name), :controller => "social_works", :action => "show_public", :id =>social_work %></td>
+            <td><p class="word_wrap"><%=h social_work.responsible %></p></td>
+            <td><p class="word_wrap"><%=h social_work.location %></p></td>
+          </tr>
+        <% end %>
+  </tr>
+</table>
+</td>
+</tr>
+</table>
+<br />
+      </div>
+    <%= render :partial => "main_page/acordeon" %>

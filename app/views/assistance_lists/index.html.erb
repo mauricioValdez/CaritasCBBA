@@ -1,0 +1,23 @@
+<%if current_user%>
+
+<h1>Listing assistance_lists</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @assistance_lists.each do |assistance_list| %>
+  <tr>
+    <td><%= link_to 'Show', assistance_list %></td>
+    <td><%= link_to 'Edit', edit_assistance_list_path(assistance_list) %></td>
+    <td><%= link_to 'Destroy', assistance_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New assistance_list', new_assistance_list_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

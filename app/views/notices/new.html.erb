@@ -1,0 +1,52 @@
+<%if current_user%>
+<h1>Crear Noticia</h1>
+
+<% form_for(@notice, :html => {:multipart => true}) do |f| %>
+<%= f.error_messages %>
+  <table>
+    <tr>  
+      <td><%= f.label :title, "* Título" %></td>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Descripción"  %> </td>
+      <td><%= f.text_area :description, :size => "60x10", :style =>"resize:none"%></td>
+    </tr>
+    
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Imagen"  %> </td>
+      <td><%= file_column_field "notice",  "notice_photo" %></td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :notice_type, "* Tipo de Noticia" %></td>
+      <td><%= f.select  :notice_type, Notice::NOTICES_TYPES %></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Publicándose" %></td>
+      <td><%= f.check_box :is_published %></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Última fecha" %> </td>
+      <td><%= f.date_select :last_date %></td>
+    </tr>
+    
+    <tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Crear' %>
+        <button type="reset">Limpiar</button>
+        <%= link_to 'Cancelar', notices_path %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>*  Estos campos son obligatorios</td>
+    </tr>
+  </table>
+<% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,137 @@
+<%= stylesheet_link_tag "jquery-ui-1.8.13.custom"  %>
+<%= stylesheet_link_tag "ui.dropdownchecklist.themeroller"  %>
+
+<%= javascript_include_tag "jquery-1.6.1.min"  %>
+<%= javascript_include_tag "jquery-ui-1.8.13.custom.min"  %>
+<%= javascript_include_tag "ui.dropdownchecklist-1.4-min"  %>
+
+<%if current_user%>
+<h1>Editar Taller</h1>
+
+<% form_for(@workshop) do |f| %>
+  <%= f.error_messages %>
+
+  <table>  
+   <tr>
+    <td>
+      <b>Parroquia</b>
+    </td>    
+        <td><%= link_to Parish.find(@workshop.parish_id).parish_name,Parish.find(@workshop.parish_id) %></td>
+  </tr>
+  <tr>
+    <td>
+      <b>Párroco</b>
+    </td>
+
+
+    <td><%=h @pastor.to_s  %></td>
+
+  </tr>
+  <tr>
+    <td>
+      <b>Estado de Parroquia</b>
+    </td>
+
+
+    <td><%=h Parish.find(@workshop.parish_id).current_state%></td>
+
+  </tr>
+  <tr>
+    <td>
+      <b>Vicaria a la que Pertenece</b>
+    </td> 
+    <td><%=h Vicariou.find(Parish.find(@workshop.parish_id).vicariou_id).name_vicariou%></td>   
+  </tr>
+  
+  <tr>
+    <td>
+      <b>Cursos</b>
+    </td>
+      <td>
+        <% coursesList = CoursesType.all.map { |courses_type| [courses_type.name, courses_type.id] } %>
+        <%= select_tag "s2", options_from_collection_for_select(CoursesType.all, :id , :name),:multiple=>true %>  
+        <br/>
+      </td>
+  </tr>
+  <tr>
+    <td><b>Observaciones</b></td>
+    <td><%= f.text_area :observations , :rows=>6, :cols=>22, :style => "resize:none"%></td>
+  </tr>   
+
+  
+  <tr>
+    <td colspan="2" align="CENTER">
+       <% if WorkshopCourseType.searchByWork(@workshop.id).count!=0 %>
+      
+      <h1>Cursos Realizados</h1>
+<table border="3" align="CENTER">
+
+        <tr id ='head-table'>
+          <th align="CENTER">Curso de Formación</th>
+          <th align="CENTER">Cantidad</th>
+          <th align="CENTER">Acciones</th>
+        </tr>
+
+     
+
+
+      
+      
+  <%   WorkshopCourseType.searchByWork(@workshop.id).each do |r| %>
+        <tr>
+          
+          
+      <% @cour= CoursesType.findf(r.id_course_type)[0] %>
+          <td align="CENTER">
+     <%= link_to r.to_s, :controller => "courses", :course_type=>r.id_course_type, :workshop=>@workshop.id %>
+            </td>
+   
+          <td align="CENTER">
+            <%=  Course.findf(r.id_course_type,@workshop.id).count%>
+            </td>
+            
+          <td align="CENTER">         
+              <%= link_to "Cursos", :controller => "courses/new", :workshop_code=>@workshop.id, :course_type_code=>r.id_course_type%>  
+          </td
+            
+            
+      </tr>
+    <%  end %>
+     </table> 
+    <%  else  %>
+      <h1 align="CENTER">No tiene Cursos!!! </h1>
+    <%  end %>
+      
+
+      
+  <tr align="right">
+      <td colspan="2">         
+          <%= f.submit 'Actualizar' %>
+    <button type="reset">Limpiar</button>
+    <%= link_to 'Ver', @workshop %> |
+    <%= link_to 'Volver', parishes_path %>
+      </td>
+    </tr>  
+  <tr>
+      <td>*  Estos campos son obligatorios</td>
+    </tr>
+</table>  
+<% end %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+
+
+<script type="text/javascript">
+        $(document).ready(function() {
+            $("#s1").dropdownchecklist();
+            $("#s2").dropdownchecklist( {icon: {}, width: 190, maxDropHeight: 150, emptyText: "Selecione..." } );
+            $("#s3").dropdownchecklist( { width: 150 } );
+            $("#s4").dropdownchecklist( { maxDropHeight: 150 } );
+            $("#s5").dropdownchecklist( { firstItemChecksAll: true, explicitClose: '...close' } );
+            $("#s6").dropdownchecklist();
+            $("#s7").dropdownchecklist();
+            $("#s8").dropdownchecklist( { emptyText: "Please Select...", width: 150 } );
+
+        });
+    </script>

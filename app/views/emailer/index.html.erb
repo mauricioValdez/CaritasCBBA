@@ -1,0 +1,21 @@
+<h1>Envia un mail</h1>
+<table border ="0"> 
+<%= form_tag :action => 'sendmail' %>
+  <tr>
+    <td><label for="email_subject">Asunto</label>:</td>
+    <td><%= text_field 'email', 'subject' %></td>
+  </tr>
+   <tr>
+    <td><label for="email_recipient">Para</label>:</td>
+    <td><%= text_field 'email', 'recipient' %></td>
+  </tr>
+<tr>
+    <td><label for="email_message">Mensaje</label></td>
+    <td><%= text_area 'email', 'message' %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><%= submit_tag "Enviar" %></td>
+  </tr>
+<%= form_tag %>
+</table>

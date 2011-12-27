@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  idGroup: 
+  idParish: 
+  instructor: MyString
+  dateCourse: 2011-11-09
+  idCourse: 
+
+two:
+  idGroup: 
+  idParish: 
+  instructor: MyString
+  dateCourse: 2011-11-09
+  idCourse: 

@@ -1,0 +1,7 @@
+<%if current_user%>
+
+<%= link_to 'Edit', edit_assistance_list_path(@assistance_list) %> |
+<%= link_to 'Back', assistance_lists_path %>
+<%else%>
+<h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

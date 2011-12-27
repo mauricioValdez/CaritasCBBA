@@ -1,0 +1,38 @@
+<%if current_user%>
+<h1>Editar Curso de Formación</h1>
+
+<% form_for(@courses_type, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+
+    <tr>
+      <td><%= f.label :name, "* Nombre" %></td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+
+    <tr>
+      <td width="250"><%= f.label :description, "* Descripción" %></td>
+      <td width="250"><%= f.text_area :description , :style => "resize:none"%></td>
+    </tr>
+    
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;Archivo adjunto</td>
+      <td><%=  file_column_field "courses_type",  "course_file" %></td>
+    </tr>
+
+
+    <tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Guardar' %>
+        <%= link_to 'Ver', :action => :show %>
+        <%= link_to 'Cancelar', courses_types_path %>
+      </td>
+    </tr>
+
+  </table>
+
+<% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

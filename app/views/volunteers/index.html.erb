@@ -1,0 +1,78 @@
+<%if current_user%>
+<h1>Voluntarios</h1>
+
+<% form_tag volunteers_path, :method => 'get' do %>
+  <p>
+    Parámetro <%= text_field_tag :search, params[:search] %>
+  <%#  <%= check_box_tag :state, params[:state] %>
+    <%= submit_tag "Buscar", :name => nil %>
+  </p>
+<% end %>
+<table>
+  <tr >
+    <td align="right" >
+      <div id='reportsOptions'>
+      <table >
+        <tr>
+          <td>
+            <%= button_to 'Crear Voluntario', new_volunteer_path %>
+            </td>
+            <td>
+             <%= link_to 'Exportar a Excel', volunteers_path(:xls) %>
+            </td>
+        </tr>
+      </table>
+          </div>
+
+  </tr>
+  <tr >
+    <td colspan=2>
+
+      <table border="3">
+
+        <tr id ='head-table'>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellido Materno</th>
+          <th>Cargo</th>
+          <th>Grupo</th>
+          <th colspan="3">Acciones</th>
+        </tr>
+
+        <% @volunteers.each do |volunteer| %>
+  
+          <% if volunteer.state %>              
+        
+            <tr>
+    
+              <td><%=link_to (h volunteer.name), volunteer %></td>
+              <td><%=h volunteer.last_name %></td>
+              <td><%=h volunteer.second_last_name %></td>
+              <td><%=h volunteer.position %></td>
+    
+    
+              <td>
+                <% @groups.each do |group| %>
+                  <%= group.name.to_s  if group.id == volunteer.group_id  %>
+                <%end%>
+              </td>
+    
+    
+                  <td><%= link_to 'Editar', edit_volunteer_path(volunteer) %></td>
+                  <%if volunteer.state == false %>
+                    <td><%= link_to 'Habilitar', volunteer, :confirm => '¿Está seguro que desea eliminar el voluntario?', :method => :delete %></td>
+                  <%else%>
+                    <td><%= link_to 'Eliminar', volunteer, :confirm => '¿Está seguro que desea eliminar el voluntario?', :method => :delete %></td>
+                  <%end%>
+            </tr>
+          
+          <%end%>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
+<br />
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

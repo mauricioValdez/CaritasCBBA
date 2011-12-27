@@ -1,0 +1,58 @@
+<%if current_user%>
+<h1>Editar Noticia</h1>
+
+<% form_for(@notice, :html => {:multipart => true}) do |f| %>
+<%= f.error_messages %>
+  <table>
+    <tr>  
+      <td><%= f.label :title, "* Título" %></td>
+      <td><p class="word_wrap"><%= f.text_field :title %></p></td>
+    </tr>
+    
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Descripción"  %> </td>
+      <td><p class="word_wrap"><%= f.text_area :description, :size => "60x10", :style => "resize:none" %></p></td>
+    </tr>
+    
+    <tr>  
+      <td>&nbsp;&nbsp;&nbsp;<%= "Imagen" %></td>
+      <% if @notice.notice_photo %>
+      <td><%=  image_tag url_for_file_column("notice", "notice_photo"), :size=>"300x200" %>
+      <% else %>
+      <td><%=  image_tag "NoticeDefault.png", :size=>"300x200" %>
+      <% end %>
+      <br>
+      <%= file_column_field "notice", "notice_photo"%> </td>
+    </tr>
+
+    <tr>
+      <td><%= f.label :notice_type, "* Tipo de Noticia" %></td>
+      <td><p class="word_wrap"><%= f.select  :notice_type, Notice::NOTICES_TYPES %></p></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Publicándose" %></td>
+      <td><%= f.check_box :is_published %></td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;&nbsp;&nbsp;<%= "Última fecha" %> </td>
+      <td><%= f.date_select :last_date %></td>
+    </tr>
+    
+    <tr align="right">
+      <td colspan="2">
+        <%= f.submit 'Guardar' %>
+        <%= link_to 'Ver', :action => :show %>
+        <%= link_to 'Cancelar', notices_path %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>*  Estos campos son obligatorios</td>
+    </tr>
+  </table>
+<% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>

@@ -1,0 +1,75 @@
+<%if current_user%>
+  <CENTER><h1>Actualizar Campa&ntilde;a</h1></center>
+
+  <% form_for(@campaing) do |f| %>
+    <%= f.error_messages %>
+
+    <TABLE   ALIGN="CENTER">
+
+      <TR>
+        <td><%= f.label :name, "* Nombre" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :name %></p>
+        </TD>
+      </TR>
+
+      <TR>
+        <td><%= f.label :location, "* Lugar" %></td>   
+
+        <TD >        
+          <p class="word_wrap"><%= f.text_field :location %></p>
+        </TD>
+      </TR>
+
+      <TR>
+        <td>&nbsp&nbsp&nbspDescripción</td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_area :description , :size => "60x10", :style => "resize:none"  %></p>
+        </TD>
+      </TR>
+
+
+      <TR>
+        <td>&nbsp&nbsp&nbspFecha de Inicio</td>
+
+        <TD >
+          <%= f.date_select :date_ini %>  
+        </TD>
+      </TR>
+
+      <TR>
+        <td>&nbsp&nbsp&nbspFecha de Finalización</td>
+
+        <TD >
+          <%= f.date_select :date_end %>
+        </TD>
+      </TR>
+
+      <TR>
+        <td><%= f.label :responsible, "* Responsable" %></td>
+
+        <TD >
+          <p class="word_wrap"><%= f.text_field :responsible %></p>
+        </TD>
+      </TR>
+
+      <tr align="right">
+        <td colspan="2">
+          <%= f.submit 'Actualizar' %>
+          <%= link_to 'Ver', :action => :show %>
+          <%= link_to 'Volver', campaings_path %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>*  Estos campos son obligatorios</td>
+      </tr>
+    </TABLE>   
+
+  <% end %>
+<%else%>
+  <h2>No puede realizar esta acción, por favor contáctese con el administrador del sistema</h2>
+<%end%>
+
