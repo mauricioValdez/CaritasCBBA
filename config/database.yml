@@ -1,0 +1,24 @@
+
+development:
+  adapter: postgresql
+  database: caritas1
+  username: postgres
+  password: 123
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: caritas_tsest
+  username: postgres
+  password: 123
+  host: localhost
+
+production:
+  adapter: postgresql
+  database: caritas_production
+  username: postgres
+  password: 123
+  host: localhost
+
+
+
